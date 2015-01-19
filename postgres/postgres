@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -eu
+
+host=$(boot2docker ip)
+port=$(docker port postgres 5432 | awk -F: '{print $2}')
+echo "Connecting to $host $port"
+psql -h $host -p $port -U postgres postgres
